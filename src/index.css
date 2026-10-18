@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  --font-game: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-game);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stage {
+  --s: 1;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- animations ---------- */
+@keyframes pop-in {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.anim-pop {
+  animation: pop-in 0.38s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+}
+
+@keyframes drop-in {
+  from {
+    transform: translateY(calc(var(--s) * -46px)) scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(calc(var(--s) * 4px)) scale(1.02);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+.anim-drop {
+  animation: drop-in 0.5s cubic-bezier(0.2, 1.2, 0.3, 1) both;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--s) * -8px));
+  }
+}
+.anim-float {
+  animation: floaty 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.anim-pulse {
+  animation: pulse-soft 1.5s ease-in-out infinite;
+}
